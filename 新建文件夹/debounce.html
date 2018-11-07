@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>我的第一个 HTML 页面</title>
+</head>
+
+<body>
+    <button id="handle">
+        按钮
+    </button>
+</body>
+<script>
+    /**
+     * 防抖
+     * 设置一定的时间后执行
+     * (function(){
+     * 立即执行函数
+     * })()
+     */
+
+    // (function () {
+    //     clearTimeout(fn.timer);
+    //     fn.timer = setTimeout(fn(), 1000);
+    //     console.log(fn.timer)
+    // })()
+    /**
+     * 
+     * 封装防抖函数
+     * 必须传两个参数setTimeOut必传参数code 必需。要调用的函数后要执行的 JavaScript 代码串。
+     *delay 必需。在执行代码前需等待的毫秒数。
+     *lang 可选。脚本语言可以是：JScript | VBScript | JavaScript
+     */
+    function fn() {
+        console.log("100000000000")
+    }
+    /**
+     * 防抖函数
+     * call传的值
+     */
+    function debounce(method, delay, context) {
+        console.log("context", context);
+        clearTimeout(method.timer);
+        method.timer = setTimeout(function () { //
+            method.call(context);
+        }, delay);
+    }
+    (function () {
+        debounce(fn, 1000) //fn回调函数
+    })();
+    // /**
+    //  * 立即执行函数（function(){})();
+    //  * 为了避免变量污染（命名冲突）
+    //  * /
+    //  /**
+    //   * call和applly的用法
+    // call传的是值
+    //apply传入的是对象
+    //   * /
+    function add(x, y) {
+        console.log(x + y)
+        return x + y;
+    };
+    // (function (x, y) {
+    //     return add.call(this, x, y)
+    // })(10, 20) //立即执行函数可以传入值
+
+
+    (function (x, y) {
+        return add.apply(this, [x, y])
+    })(10, 20)
+    // console.log(callAdd(10, 20));
+    //call和apply的作用
+    //call 方法可以用来代替另一个对象调用一个方法。
+    //参数不同, apply 传入的是一个参数数组，也就是将多个参数组合成一个参数数组， call 从第二个参数开始依次传入.
+    //apply 可以直接将当前函数的arguments对象作为apply的第二个参数传入
+
+    /**
+     * 节流
+     */
+</script>
+
+</html>
